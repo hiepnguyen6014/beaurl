@@ -16,6 +16,7 @@
   "plugins": ["react"],
   "rules": {
     "@typescript-eslint/quotes": "off",
-    "@typescript-eslint/semi": "off"
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/member-delimiter-style": "off"
   }
 }
