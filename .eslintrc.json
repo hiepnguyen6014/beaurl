@@ -15,8 +15,13 @@
   },
   "plugins": ["react"],
   "rules": {
+    "singleQuote": "off",
+    "semi": ["error", "always"],
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
     "@typescript-eslint/quotes": "off",
     "@typescript-eslint/semi": "off",
-    "@typescript-eslint/member-delimiter-style": "off"
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off"
   }
 }

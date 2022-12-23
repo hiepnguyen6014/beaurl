@@ -3,7 +3,8 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import type { NextPage } from "next/types";
 
-import GlobalStyles from "~/styles/GlobalStyles";
+import { LocalesProvider } from "~/hooks/useLocales";
+import "./index.css";
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -50,8 +51,9 @@ const App: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
           content="Beaurl's Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution."
         />
       </Head>
-      <GlobalStyles />
-      <>{getLayout(<Component {...pageProps} />)}</>
+      <LocalesProvider>
+        <>{getLayout(<Component {...pageProps} />)}</>
+      </LocalesProvider>
     </>
   );
 };
