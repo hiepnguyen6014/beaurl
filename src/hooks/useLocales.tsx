@@ -4,7 +4,7 @@ import useLocalStorage from "./useLocalStorage";
 
 import locales from "../locales";
 
-const DEFAULT_LOCALE = "vi";
+const DEFAULT_LOCALE = "en";
 const LOCALE_KEY = "lang";
 
 interface Locales {
@@ -40,14 +40,11 @@ export const LocalesProvider: React.FC<{
 
 export const useLocales: (key: string) => string = (key: string) => {
   const { locales } = React.useContext(LocalesContext);
+  const [language, setLanguage] = React.useState<object>({});
 
-  return locales[key as keyof typeof locales];
+  React.useEffect(() => {
+    setLanguage(locales);
+  }, [locales]);
+
+  return language[key as keyof typeof language];
 };
-
-export const useLocal: () => string = () => {
-  const { local } = React.useContext(LocalesContext);
-
-  return local;
-};
-
-export default LocalesProvider;

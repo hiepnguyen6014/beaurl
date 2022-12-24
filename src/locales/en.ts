@@ -5,4 +5,18 @@ export default {
   "header.features": "Features",
   "header.pricing": "Pricing",
   "header.faq": "FAQ",
+
+  "footer.features": "Features",
+  "footer.aboutUs": "About Us",
+  "footer.shortenLink": "Short Link",
+  "footer.generateQRCode": "Generate QR Code",
+  "footer.linkInBios": "Link-in-Bios",
+  "footer.statistic": "Dashboard",
+  "footer.termsOfService": "Terms of Service",
+  "footer.privacyPolicy": "Privacy Policy",
+  "footer.paymentMethod": "Payment Method",
+  "footer.language": "Language",
+  "footer.taxCode": "Tax Code",
+  "footer.legalRepresentative": "Legal Representative",
+  "footer.beaurl": "What is Beaurl?",
 };

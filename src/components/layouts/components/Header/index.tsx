@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { Drawer } from "@mui/material";
 
 import {
   Container,
@@ -23,6 +24,7 @@ const HeaderContainer: React.FC = () => {
   const headerLogin = useLocales("global.login");
 
   const [shadow, setShadow] = React.useState<boolean>(false);
+  const [showDrawer, setShowDrawer] = React.useState<boolean>(false);
 
   const handleScroll = (): void => {
     if (window.scrollY > 0) {
@@ -52,9 +54,16 @@ const HeaderContainer: React.FC = () => {
           <NavItem>{headerFaq}</NavItem>
           <AuthButton>{headerLogin}</AuthButton>
         </NavList>
-        <MenuButton>
+        <MenuButton onClick={() => setShowDrawer(true)}>
           <MenuIcon src={menuIcon} alt="menu-icon" />
         </MenuButton>
+        <Drawer
+          anchor={"right"}
+          open={showDrawer}
+          onClose={() => setShowDrawer(false)}
+        >
+          search me for edit: 123861283628716378
+        </Drawer>
       </Container>
     </Header>
   );
