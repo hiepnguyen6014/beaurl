@@ -88,7 +88,7 @@ export const CopyrightText = styled.p`
   font-weight: 600;
   transition: all 0.4s ease 0s;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
     font-weight: 500;
   }
 `;

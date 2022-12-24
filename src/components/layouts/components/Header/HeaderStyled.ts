@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeaderProps {
   shadow: boolean;
@@ -7,13 +8,13 @@ interface HeaderProps {
 
 export const Header = styled.header<HeaderProps>`
   position: fixed;
+  top: 0;
   right: 0px;
   left: 0px;
   margin-top: 0px;
   background-color: #fff;
   z-index: 100;
-  box-shadow: ${({ shadow }) =>
-    shadow ? "0 0.65rem 1rem rgba(18, 38, 63, 0.03) !important" : "none"};
+  box-shadow: ${({ shadow }) => (shadow ? "0 0.65rem 1rem rgba(18, 38, 63, 0.03) !important" : "none")};
 `;
 
 export const Container = styled.div`
@@ -24,6 +25,11 @@ export const Container = styled.div`
   height: 80px;
   margin: 0 auto;
   padding: 0 8px;
+`;
+
+export const LogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
 `;
 
 export const Logo = styled(Image)`
@@ -39,7 +45,7 @@ export const NavList = styled.ul`
   list-style: none;
   max-height: 80px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
     display: none;
   }
 `;
@@ -52,6 +58,12 @@ export const NavItem = styled.li`
   font-weight: 600;
   font-size: 18px;
   cursor: pointer;
+`;
+
+export const NavItemLink = styled(Link)`
+  display: block;
+  color: #232b33;
+  text-decoration: none;
 
   &:hover {
     color: var(--primary-color);
@@ -63,7 +75,7 @@ export const MenuButton = styled.div`
   margin-right: 20px;
   cursor: pointer;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
     display: block;
   }
 `;

@@ -1,17 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import { Drawer } from "@mui/material";
 
-import {
-  Container,
-  Header,
-  Logo,
-  NavList,
-  NavItem,
-  MenuButton,
-  MenuIcon,
-  AuthButton,
-} from "./HeaderStyled";
+import { Container, Header, Logo, NavList, NavItem, MenuButton, MenuIcon, AuthButton, LogoLink, NavItemLink } from "./HeaderStyled";
 
 import logo from "~/assets/logo.svg";
 import menuIcon from "~/assets/menu-bar-icon.svg";
@@ -45,23 +35,23 @@ const HeaderContainer: React.FC = () => {
   return (
     <Header shadow={shadow}>
       <Container>
-        <Link href="/">
+        <LogoLink href="/">
           <Logo src={logo} alt="logo" />
-        </Link>
+        </LogoLink>
         <NavList>
-          <NavItem>{headerFeatures}</NavItem>
-          <NavItem>{headerPricing}</NavItem>
+          <NavItem>
+            <NavItemLink href="/#features">{headerFeatures}</NavItemLink>
+          </NavItem>
+          <NavItem>
+            <NavItemLink href="/#pricing">{headerPricing}</NavItemLink>
+          </NavItem>
           <NavItem>{headerFaq}</NavItem>
           <AuthButton>{headerLogin}</AuthButton>
         </NavList>
         <MenuButton onClick={() => setShowDrawer(true)}>
           <MenuIcon src={menuIcon} alt="menu-icon" />
         </MenuButton>
-        <Drawer
-          anchor={"right"}
-          open={showDrawer}
-          onClose={() => setShowDrawer(false)}
-        >
+        <Drawer anchor={"right"} open={showDrawer} onClose={() => setShowDrawer(false)}>
           search me for edit: 123861283628716378
         </Drawer>
       </Container>

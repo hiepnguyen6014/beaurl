@@ -1,6 +1,7 @@
 :root {
   --primary-color: #ee6123;
   --header-height: 80px;
+  --breakpoint: 900px;
 }
 
 html *::-webkit-scrollbar {
@@ -35,12 +36,13 @@ html *::-webkit-scrollbar-track {
 
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  padding: 0;
 }
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth !important;
 }
 
 body {

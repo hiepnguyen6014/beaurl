@@ -47,18 +47,26 @@ const FooterContainer: React.FC = () => {
               <Title>{useLocales("footer.features")}</Title>
               <List>
                 <Item>
-                  <ItemLink href="/" aria-label="Rút gọn link" prefetch={false}>
+                  <ItemLink
+                    href="/#features"
+                    aria-label="Rút gọn link"
+                    prefetch={false}
+                  >
                     {useLocales("footer.shortenLink")}
                   </ItemLink>
                 </Item>
                 <Item>
-                  <ItemLink href="/" aria-label="Tạo QR Codes" prefetch={false}>
+                  <ItemLink
+                    href="/#features"
+                    aria-label="Tạo QR Codes"
+                    prefetch={false}
+                  >
                     {useLocales("footer.generateQRCode")}
                   </ItemLink>
                 </Item>
                 <Item>
                   <ItemLink
-                    href="/"
+                    href="/#features"
                     aria-label=" Link-in-Bios"
                     prefetch={false}
                   >
@@ -67,7 +75,7 @@ const FooterContainer: React.FC = () => {
                 </Item>
                 <Item>
                   <ItemLink
-                    href="/"
+                    href="/#features"
                     aria-label="Biểu đồ thống kê"
                     prefetch={false}
                   >
@@ -122,7 +130,7 @@ const FooterContainer: React.FC = () => {
           </Grid>
           <Grid md={4} xs={12}>
             <Col>
-              <Salenoti src={salenotiImage} alt="salenoti" priority />
+              <Salenoti src={salenotiImage} alt="salenoti" />
               <Title>{useLocales("footer.language")}</Title>
               <LanguageList>
                 <LanguageItem onClick={() => handleSetLanguage("vi")}>
