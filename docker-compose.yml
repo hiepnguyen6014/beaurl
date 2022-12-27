@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  beaurl:
-    image: hiepnguyen6014/beaurl:latest
+  dev-beaurl:
+    image: hiepnguyen6014/beaurl-dev:latest
     ports:
-      - "7000:3000"
+      - "7001:3000"
     restart: always
