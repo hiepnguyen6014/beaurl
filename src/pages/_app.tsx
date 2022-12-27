@@ -29,7 +29,7 @@ const App: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
         <meta name="author" content="hiepnguyen6014" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="./logo.png" />
-        <meta property="og:url" content="https://beaurl.site" />
+        <meta property="og:url" content="https://beaurl.store" />
         <title>Beaurl URL Shortener - Short URLs & Custom Free Link Shortener | Beaurl</title>
         <meta name="title" content="Beaurl URL Shortener - Short URLs & Custom Free Link Shortener | Beaurl" />
         <meta
