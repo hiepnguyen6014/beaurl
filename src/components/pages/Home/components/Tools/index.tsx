@@ -31,9 +31,9 @@ const Tools: NextPage = () => {
           >
             <Title>{useLocales("global.title")}</Title>
             <ShortenLinkContainer>
-              <ShortenLinkInput placeholder={useLocales("global.longLink")} />
-              <ButtonShortenLink>{useLocales("global.shorten")}</ButtonShortenLink>
-              <ButtonCopyLink>{useLocales("global.copy")}</ButtonCopyLink>
+              <ShortenLinkInput placeholder={useLocales("global.longLink")} aria-label="input-link" />
+              <ButtonShortenLink aria-label="button-shorten">{useLocales("global.shorten")}</ButtonShortenLink>
+              <ButtonCopyLink aria-label="copy-button">{useLocales("global.copy")}</ButtonCopyLink>
             </ShortenLinkContainer>
           </Grid>
           <Grid

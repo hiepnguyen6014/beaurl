@@ -5,7 +5,10 @@ export const Main = styled.main`
   margin-top: 80px;
 `;
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  padding-top: 80px;
+  padding-bottom: 40px;
+`;
 
 export const Container = styled.div`
   max-width: 1200px;
@@ -28,6 +31,9 @@ export const Title = styled.h1`
 `;
 
 export const TitleGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 16px;
 `;
 
@@ -37,8 +43,9 @@ export const CenterTitle = styled.h3`
   text-align: center;
 `;
 
-export const SubTitle = styled.h2`
-  margin-bottom: 16px;
+export const SubTitle = styled.h4`
+  max-width: 90vw;
+  margin-bottom: 56px;
   font-size: 16px;
   font-weight: 500;
   text-align: center;

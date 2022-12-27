@@ -17,6 +17,7 @@ import {
   CopyrightIcon,
   CopyrightText,
   CopyrightItem,
+  FooterDivider,
 } from "./FooterStyled";
 
 import salenotiImage from "~/assets/salenoti.png";
@@ -40,6 +41,7 @@ const FooterContainer: React.FC = () => {
 
   return (
     <Footer>
+      <FooterDivider />
       <Container>
         <Grid container spacing={1} margin={0} padding={1}>
           <Grid md={4} xs={12}>
@@ -47,38 +49,22 @@ const FooterContainer: React.FC = () => {
               <Title>{useLocales("footer.features")}</Title>
               <List>
                 <Item>
-                  <ItemLink
-                    href="/#features"
-                    aria-label="Rút gọn link"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/" aria-label="Rút gọn link" prefetch={false}>
                     {useLocales("footer.shortenLink")}
                   </ItemLink>
                 </Item>
                 <Item>
-                  <ItemLink
-                    href="/#features"
-                    aria-label="Tạo QR Codes"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/#features" aria-label="Tạo QR Codes" prefetch={false}>
                     {useLocales("footer.generateQRCode")}
                   </ItemLink>
                 </Item>
                 <Item>
-                  <ItemLink
-                    href="/#features"
-                    aria-label=" Link-in-Bios"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/#features" aria-label=" Link-in-Bios" prefetch={false}>
                     {useLocales("footer.linkInBios")}
                   </ItemLink>
                 </Item>
                 <Item>
-                  <ItemLink
-                    href="/#features"
-                    aria-label="Biểu đồ thống kê"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/#features" aria-label="Biểu đồ thống kê" prefetch={false}>
                     {useLocales("footer.statistic")}
                   </ItemLink>
                 </Item>
@@ -90,38 +76,22 @@ const FooterContainer: React.FC = () => {
               <Title>{useLocales("footer.aboutUs")}</Title>
               <List>
                 <Item>
-                  <ItemLink
-                    href="/me/what-is-beaurl"
-                    aria-label="Beaurl"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/me/what-is-beaurl" aria-label="Beaurl" prefetch={false}>
                     {useLocales("footer.beaurl")}
                   </ItemLink>
                 </Item>
                 <Item>
-                  <ItemLink
-                    href="/me/terms-of-service"
-                    aria-label="Điều khoản dịch vụ"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/me/terms-of-service" aria-label="Điều khoản dịch vụ" prefetch={false}>
                     {useLocales("footer.termsOfService")}
                   </ItemLink>
                 </Item>
                 <Item>
-                  <ItemLink
-                    href="/me/privacy-policy"
-                    aria-label="Chính sách bảo mật"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/me/privacy-policy" aria-label="Chính sách bảo mật" prefetch={false}>
                     {useLocales("footer.privacyPolicy")}
                   </ItemLink>
                 </Item>
                 <Item>
-                  <ItemLink
-                    href="/me/payment-method"
-                    aria-label="Phương thức thanh toán"
-                    prefetch={false}
-                  >
+                  <ItemLink href="/me/payment-method" aria-label="Phương thức thanh toán" prefetch={false}>
                     {useLocales("footer.paymentMethod")}
                   </ItemLink>
                 </Item>
@@ -133,10 +103,10 @@ const FooterContainer: React.FC = () => {
               <Salenoti src={salenotiImage} alt="salenoti" />
               <Title>{useLocales("footer.language")}</Title>
               <LanguageList>
-                <LanguageItem onClick={() => handleSetLanguage("vi")}>
+                <LanguageItem onClick={() => handleSetLanguage("vi")} aria-label="vi">
                   <LanguageImage src={vietnameseFlag} alt="vietnamese" />
                 </LanguageItem>
-                <LanguageItem onClick={() => handleSetLanguage("en")}>
+                <LanguageItem onClick={() => handleSetLanguage("en")} aria-label="en">
                   <LanguageImage src={englishFlag} alt="english" />
                 </LanguageItem>
               </LanguageList>
@@ -145,37 +115,21 @@ const FooterContainer: React.FC = () => {
         </Grid>
         <Divider />
         <Copyright>
-          <Grid
-            container
-            spacing={1}
-            margin={0}
-            padding={1}
-            justifyContent={"space-between"}
-          >
+          <Grid container spacing={1} margin={0} padding={1} justifyContent={"space-between"}>
             <Grid md={4} xs={12}>
               <CopyrightItem>
                 <CopyrightIcon src={cashFlowIcon} alt="cashFlowIcon" />
-                <CopyrightText>
-                  {useLocales("footer.taxCode")}: 123123123123
-                </CopyrightText>
+                <CopyrightText>{useLocales("footer.taxCode")}: 123123123123</CopyrightText>
               </CopyrightItem>
             </Grid>
             <Grid md={4} xs={12}>
               <CopyrightItem>
-                <CopyrightIcon
-                  src={corporateUserIcon}
-                  alt="corporateUserIcon"
-                />
-                <CopyrightText>
-                  {useLocales("footer.legalRepresentative")}: Mr. Nguyễn Đại
-                  Hiệp
-                </CopyrightText>
+                <CopyrightIcon src={corporateUserIcon} alt="corporateUserIcon" />
+                <CopyrightText>{useLocales("footer.legalRepresentative")}: Mr. Nguyễn Đại Hiệp</CopyrightText>
               </CopyrightItem>
             </Grid>
           </Grid>
-          <CopyrightText>
-            Copyright © 2023 Beaurl. All rights reserved.
-          </CopyrightText>
+          <CopyrightText>Copyright © 2023 Beaurl. All rights reserved.</CopyrightText>
         </Copyright>
       </Container>
     </Footer>

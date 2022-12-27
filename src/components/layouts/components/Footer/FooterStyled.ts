@@ -54,10 +54,12 @@ export const LanguageList = styled.div`
   margin-top: 16px;
 `;
 
-export const LanguageItem = styled.div`
+export const LanguageItem = styled.button`
   display: flex;
   align-items: center;
   margin-right: 16px;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 `;
 
@@ -91,4 +93,10 @@ export const CopyrightText = styled.p`
   @media screen and (max-width: 900px) {
     font-weight: 500;
   }
+`;
+
+export const FooterDivider = styled.div`
+  height: 20px;
+  margin-top: 30px;
+  background-color: var(--primary-color);
 `;

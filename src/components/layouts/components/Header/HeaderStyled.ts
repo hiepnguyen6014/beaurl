@@ -55,24 +55,29 @@ export const NavItem = styled.li`
   align-items: center;
   justify-content: space-between;
   padding: 10px 30px;
-  font-weight: 600;
-  font-size: 18px;
-  cursor: pointer;
 `;
 
-export const NavItemLink = styled(Link)`
+export const NavItemLink = styled.button`
   display: block;
+  width: 100%;
+  height: 100%;
   color: #232b33;
-  text-decoration: none;
+  font-size: 18px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: transparent;
 
   &:hover {
     color: var(--primary-color);
   }
 `;
 
-export const MenuButton = styled.div`
+export const MenuButton = styled.button`
   display: none;
   margin-right: 20px;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 
   @media screen and (max-width: 900px) {
@@ -86,9 +91,7 @@ export const MenuIcon = styled(Image)`
 `;
 
 export const AuthButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   padding: 12px 20px;
   margin-left: 30px;
   font-weight: 500;
@@ -102,4 +105,53 @@ export const AuthButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
+`;
+
+export const Menu = styled.div`
+  width: 300px;
+  max-width: 80vw;
+  overflow: hidden;
+`;
+
+export const LogoButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 20px;
+`;
+
+export const MenuNavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  list-style: none;
+`;
+
+export const MenuNavItem = styled.li`
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+`;
+
+export const AuthLink = styled(Link)`
+  display: block;
+  width: 100%;
+  color: #232b33;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: transparent;
+  margin-top: 20px;
+  margin-left: 20px;
+
+  &:hover {
+    color: var(--primary-color);
+  }
+`;
+
+export const MenuNavItemLink = styled(NavItemLink)`
+  text-align: left;
 `;

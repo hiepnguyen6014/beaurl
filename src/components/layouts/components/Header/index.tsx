@@ -1,7 +1,24 @@
 import React from "react";
-import { Drawer } from "@mui/material";
+import { Drawer, Divider } from "@mui/material";
 
-import { Container, Header, Logo, NavList, NavItem, MenuButton, MenuIcon, AuthButton, LogoLink, NavItemLink } from "./HeaderStyled";
+import {
+  Container,
+  Header,
+  Logo,
+  NavList,
+  NavItem,
+  MenuButton,
+  MenuIcon,
+  AuthButton,
+  LogoLink,
+  NavItemLink,
+  Menu,
+  LogoButton,
+  MenuNavItem,
+  MenuNavList,
+  AuthLink,
+  MenuNavItemLink,
+} from "./HeaderStyled";
 
 import logo from "~/assets/logo.svg";
 import menuIcon from "~/assets/menu-bar-icon.svg";
@@ -24,6 +41,22 @@ const HeaderContainer: React.FC = () => {
     }
   };
 
+  const handleClickNav = (id: string): void => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({ top: element.offsetTop, behavior: "smooth" });
+    }
+
+    if (showDrawer) {
+      setShowDrawer(false);
+    }
+  };
+
+  const handleLogoClick = (): void => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setShowDrawer(false);
+  };
+
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -35,24 +68,57 @@ const HeaderContainer: React.FC = () => {
   return (
     <Header shadow={shadow}>
       <Container>
-        <LogoLink href="/">
+        <LogoLink href="/" aria-label="home-button">
           <Logo src={logo} alt="logo" />
         </LogoLink>
         <NavList>
           <NavItem>
-            <NavItemLink href="/#features">{headerFeatures}</NavItemLink>
+            <NavItemLink aria-label="Tính năng" onClick={() => handleClickNav("features")}>
+              {headerFeatures}
+            </NavItemLink>
           </NavItem>
           <NavItem>
-            <NavItemLink href="/#pricing">{headerPricing}</NavItemLink>
+            <NavItemLink aria-label="Bảng giá" onClick={() => handleClickNav("pricing")}>
+              {headerPricing}
+            </NavItemLink>
           </NavItem>
-          <NavItem>{headerFaq}</NavItem>
-          <AuthButton>{headerLogin}</AuthButton>
+          <NavItem>
+            <NavItemLink aria-label="FAQ" onClick={() => handleClickNav("faq")}>
+              {headerFaq}
+            </NavItemLink>
+          </NavItem>
+          <AuthButton aria-label="login-button">{headerLogin}</AuthButton>
         </NavList>
-        <MenuButton onClick={() => setShowDrawer(true)}>
+        <MenuButton onClick={() => setShowDrawer(true)} aria-label="menu-button">
           <MenuIcon src={menuIcon} alt="menu-icon" />
         </MenuButton>
         <Drawer anchor={"right"} open={showDrawer} onClose={() => setShowDrawer(false)}>
-          search me for edit: 123861283628716378
+          <Menu>
+            <LogoButton aria-label="home-button" onClick={() => handleLogoClick()}>
+              <Logo src={logo} alt="logo" />
+            </LogoButton>
+            <Divider />
+            <MenuNavList>
+              <MenuNavItem>
+                <MenuNavItemLink aria-label="Tính năng" onClick={() => handleClickNav("features")}>
+                  {headerFeatures}
+                </MenuNavItemLink>
+              </MenuNavItem>
+              <MenuNavItem>
+                <MenuNavItemLink aria-label="Bảng giá" onClick={() => handleClickNav("pricing")}>
+                  {headerPricing}
+                </MenuNavItemLink>
+              </MenuNavItem>
+              <MenuNavItem>
+                <MenuNavItemLink aria-label="FAQ" onClick={() => handleClickNav("faq")}>
+                  {headerFaq}
+                </MenuNavItemLink>
+              </MenuNavItem>
+              <AuthLink aria-label="login-link" href="/login">
+                {headerLogin}
+              </AuthLink>
+            </MenuNavList>
+          </Menu>
         </Drawer>
       </Container>
     </Header>

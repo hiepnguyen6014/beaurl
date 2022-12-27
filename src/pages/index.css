@@ -9,6 +9,12 @@ html *::-webkit-scrollbar {
   width: 8px;
 }
 
+@media screen and (max-width: 900px) {
+  * {
+    font-weight: 500 !important;
+  }
+}
+
 html *::-webkit-scrollbar {
   border-radius: 0;
   width: 8px;

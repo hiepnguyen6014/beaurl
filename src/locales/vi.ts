@@ -35,6 +35,16 @@ export default {
   "features.characteristic": "Đặc điểm nổi bật",
   "feature.use": "Sử dụng",
 
+  "pricing.title": "Bảng giá",
+  "pricing.description":
+    "Beaurl là công cụ miễn phí, bạn có thể sử dụng nó miễn phí. Nếu bạn muốn hỗ trợ chúng tôi, bạn có thể mua gói VIP.",
+  "pricing.subDescription":
+    "Tạo cái link rút gọn chuyên nghiệp hơn với gói dịch vụ của Beaurl. Gói này cho phép bạn có thêm nhiều tuỳ chỉnh về link rút gọn, QR Codes và Link-in-Bios.",
+  "pricing.checkout": "Thanh toán",
+
+  "faq.title": "Các câu hỏi thường gặp",
+  "faq.description": "Các câu hỏi thường gặp về Beaurl",
+
   "footer.features": "Tính năng",
   "footer.aboutUs": "Về chúng tôi",
   "footer.shortenLink": "Rút gọn link",

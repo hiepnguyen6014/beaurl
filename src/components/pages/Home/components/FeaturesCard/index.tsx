@@ -24,7 +24,9 @@ const FeaturesCard: React.FC<{
           <FeaturesItem key={index}>{translate(feature)}</FeaturesItem>
         ))}
       </FeaturesList>
-      <Button href="/#features">{translate("feature.use")}</Button>
+      <Button href="/#features" aria-label="Bắt đầu">
+        {translate("feature.use")}
+      </Button>
     </Container>
   );
 };

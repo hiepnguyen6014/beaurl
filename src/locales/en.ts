@@ -35,6 +35,14 @@ export default {
   "features.characteristic": "Characteristic",
   "feature.use": "Get Started",
 
+  "pricing.title": "Pricing",
+  "pricing.description": "Beaurl is a free tool that allows you to shorten your link, generate QR code, and design Link-in-Bios.",
+  "pricing.subDescription": "You can use Beaurl for free, but if you want to use your own domain, you need to upgrade to a paid plan.",
+  "pricing.checkout": "Checkout",
+
+  "faq.title": "Frequency Asked Questions",
+  "faq.description": "Beaurl is a free tool that allows you to shorten your link, generate QR code, and design Link-in-Bios.",
+
   "footer.features": "Features",
   "footer.aboutUs": "About Us",
   "footer.shortenLink": "Short Link",
