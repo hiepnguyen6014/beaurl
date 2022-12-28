@@ -44,7 +44,7 @@ const Tools: NextPage = () => {
               md: 2,
             }}
           >
-            <HeroImage src={heroSvg} alt="hero-image" />
+            <HeroImage src={heroSvg} alt="hero-image" priority />
           </Grid>
         </Grid>
       </Container>

@@ -15,8 +15,8 @@ interface Locales {
 
 export const LocalesContext = React.createContext<Locales>({
   local: DEFAULT_LOCALE,
-  setLocal: () => locales.vi,
-  locales: locales.vi,
+  setLocal: (local: string) => locales.en,
+  locales: locales.en,
 });
 
 export const LocalesProvider: React.FC<{
@@ -33,18 +33,11 @@ export const LocalesProvider: React.FC<{
     [local, setLocal]
   );
 
-  return (
-    <LocalesContext.Provider value={value}>{children}</LocalesContext.Provider>
-  );
+  return <LocalesContext.Provider value={value}>{children}</LocalesContext.Provider>;
 };
 
-export const useLocales: (key: string) => string = (key: string) => {
+export const useLocales: (key: string) => string = (key) => {
   const { locales } = React.useContext(LocalesContext);
-  const [language, setLanguage] = React.useState<object>({});
 
-  React.useEffect(() => {
-    setLanguage(locales);
-  }, [locales]);
-
-  return language[key as keyof typeof language];
+  return locales[key as keyof typeof locales];
 };

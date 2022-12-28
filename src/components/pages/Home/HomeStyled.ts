@@ -8,6 +8,7 @@ export const Main = styled.main`
 export const Section = styled.section`
   padding-top: 80px;
   padding-bottom: 40px;
+  visibility: visible;
 `;
 
 export const Container = styled.div`
@@ -18,12 +19,14 @@ export const Container = styled.div`
 export const HeroImage = styled(Image)`
   width: 100%;
   height: 100%;
+  animation: FadeDownLarge 1s ease 0.4s both;
 `;
 
 export const Title = styled.h1`
   margin-top: 60px;
   font-size: 40px;
   font-weight: 600;
+  animation: FadeDown 1s ease 0.2s both;
 
   @media screen and (max-width: 900px) {
     font-size: 30px;
@@ -35,6 +38,7 @@ export const TitleGroup = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 16px;
+  animation: FadeDown 0.2s ease 0.1s both;
 `;
 
 export const CenterTitle = styled.h3`
@@ -56,6 +60,7 @@ export const ShortenLinkContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  animation: FadeDown 1s ease 0.2s both;
 `;
 
 export const ShortenLinkInput = styled.input`

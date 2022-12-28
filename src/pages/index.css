@@ -228,3 +228,27 @@ template {
   font-family: "Baloo 2";
   src: url("../assets/fonts/Baloo2.ttf") format("truetype");
 }
+
+@keyframes FadeDownLarge {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes FadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

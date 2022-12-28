@@ -7,7 +7,17 @@ const HomeScreen = dynamic(async () => await import("~/components/pages/Home"));
 
 const Home: NextPageWithLayout = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div
+          style={{
+            height: "100vh",
+          }}
+        >
+          Loading...
+        </div>
+      }
+    >
       <HomeScreen />
     </Suspense>
   );

@@ -57,6 +57,10 @@ const HeaderContainer: React.FC = () => {
     setShowDrawer(false);
   };
 
+  const handleLogin = (): void => {
+    window.location.href = "/func/login";
+  };
+
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -87,7 +91,9 @@ const HeaderContainer: React.FC = () => {
               {headerFaq}
             </NavItemLink>
           </NavItem>
-          <AuthButton aria-label="login-button">{headerLogin}</AuthButton>
+          <AuthButton aria-label="login-button" onClick={() => handleLogin()}>
+            {headerLogin}
+          </AuthButton>
         </NavList>
         <MenuButton onClick={() => setShowDrawer(true)} aria-label="menu-button">
           <MenuIcon src={menuIcon} alt="menu-icon" />
@@ -114,7 +120,7 @@ const HeaderContainer: React.FC = () => {
                   {headerFaq}
                 </MenuNavItemLink>
               </MenuNavItem>
-              <AuthLink aria-label="login-link" href="/login">
+              <AuthLink aria-label="login-link" href="/func/login">
                 {headerLogin}
               </AuthLink>
             </MenuNavList>

@@ -100,7 +100,7 @@ const FooterContainer: React.FC = () => {
           </Grid>
           <Grid md={4} xs={12}>
             <Col>
-              <Salenoti src={salenotiImage} alt="salenoti" />
+              <Salenoti src={salenotiImage} alt="salenoti" priority />
               <Title>{useLocales("footer.language")}</Title>
               <LanguageList>
                 <LanguageItem onClick={() => handleSetLanguage("vi")} aria-label="vi">
