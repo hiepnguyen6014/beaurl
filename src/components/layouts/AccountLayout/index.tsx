@@ -1,18 +1,18 @@
 import React from "react";
 
-import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-const MainLayout: React.FC<{
+const AccountLayout: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   return (
     <>
-      <Header showNav />
+      <Header />
       {children}
       <Footer />
     </>
   );
 };
 
-export default MainLayout;
+export default AccountLayout;

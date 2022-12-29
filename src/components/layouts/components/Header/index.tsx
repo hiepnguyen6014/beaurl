@@ -24,7 +24,9 @@ import logo from "~/assets/logo.svg";
 import menuIcon from "~/assets/menu-bar-icon.svg";
 import { useLocales } from "~/hooks/useLocales";
 
-const HeaderContainer: React.FC = () => {
+const HeaderContainer: React.FC<{
+  showNav?: boolean;
+}> = ({ showNav }) => {
   const headerFeatures = useLocales("header.features");
   const headerPricing = useLocales("header.pricing");
   const headerFaq = useLocales("header.faq");
@@ -75,57 +77,63 @@ const HeaderContainer: React.FC = () => {
         <LogoLink href="/" aria-label="home-button">
           <Logo src={logo} alt="logo" />
         </LogoLink>
-        <NavList>
-          <NavItem>
-            <NavItemLink aria-label="Tính năng" onClick={() => handleClickNav("features")}>
-              {headerFeatures}
-            </NavItemLink>
-          </NavItem>
-          <NavItem>
-            <NavItemLink aria-label="Bảng giá" onClick={() => handleClickNav("pricing")}>
-              {headerPricing}
-            </NavItemLink>
-          </NavItem>
-          <NavItem>
-            <NavItemLink aria-label="FAQ" onClick={() => handleClickNav("faq")}>
-              {headerFaq}
-            </NavItemLink>
-          </NavItem>
-          <AuthButton aria-label="login-button" onClick={() => handleLogin()}>
-            {headerLogin}
-          </AuthButton>
-        </NavList>
-        <MenuButton onClick={() => setShowDrawer(true)} aria-label="menu-button">
-          <MenuIcon src={menuIcon} alt="menu-icon" />
-        </MenuButton>
-        <Drawer anchor={"right"} open={showDrawer} onClose={() => setShowDrawer(false)}>
-          <Menu>
-            <LogoButton aria-label="home-button" onClick={() => handleLogoClick()}>
-              <Logo src={logo} alt="logo" />
-            </LogoButton>
-            <Divider />
-            <MenuNavList>
-              <MenuNavItem>
-                <MenuNavItemLink aria-label="Tính năng" onClick={() => handleClickNav("features")}>
+        {showNav ? (
+          <>
+            <NavList>
+              <NavItem>
+                <NavItemLink aria-label="Tính năng" onClick={() => handleClickNav("features")}>
                   {headerFeatures}
-                </MenuNavItemLink>
-              </MenuNavItem>
-              <MenuNavItem>
-                <MenuNavItemLink aria-label="Bảng giá" onClick={() => handleClickNav("pricing")}>
+                </NavItemLink>
+              </NavItem>
+              <NavItem>
+                <NavItemLink aria-label="Bảng giá" onClick={() => handleClickNav("pricing")}>
                   {headerPricing}
-                </MenuNavItemLink>
-              </MenuNavItem>
-              <MenuNavItem>
-                <MenuNavItemLink aria-label="FAQ" onClick={() => handleClickNav("faq")}>
+                </NavItemLink>
+              </NavItem>
+              <NavItem>
+                <NavItemLink aria-label="FAQ" onClick={() => handleClickNav("faq")}>
                   {headerFaq}
-                </MenuNavItemLink>
-              </MenuNavItem>
-              <AuthLink aria-label="login-link" href="/func/login">
+                </NavItemLink>
+              </NavItem>
+              <AuthButton aria-label="login-button" onClick={() => handleLogin()}>
                 {headerLogin}
-              </AuthLink>
-            </MenuNavList>
-          </Menu>
-        </Drawer>
+              </AuthButton>
+            </NavList>
+            <MenuButton onClick={() => setShowDrawer(true)} aria-label="menu-button">
+              <MenuIcon src={menuIcon} alt="menu-icon" />
+            </MenuButton>
+            <Drawer anchor={"right"} open={showDrawer} onClose={() => setShowDrawer(false)}>
+              <Menu>
+                <LogoButton aria-label="home-button" onClick={() => handleLogoClick()}>
+                  <Logo src={logo} alt="logo" />
+                </LogoButton>
+                <Divider />
+                <MenuNavList>
+                  <MenuNavItem>
+                    <MenuNavItemLink aria-label="Tính năng" onClick={() => handleClickNav("features")}>
+                      {headerFeatures}
+                    </MenuNavItemLink>
+                  </MenuNavItem>
+                  <MenuNavItem>
+                    <MenuNavItemLink aria-label="Bảng giá" onClick={() => handleClickNav("pricing")}>
+                      {headerPricing}
+                    </MenuNavItemLink>
+                  </MenuNavItem>
+                  <MenuNavItem>
+                    <MenuNavItemLink aria-label="FAQ" onClick={() => handleClickNav("faq")}>
+                      {headerFaq}
+                    </MenuNavItemLink>
+                  </MenuNavItem>
+                  <AuthLink aria-label="login-link" href="/func/login">
+                    {headerLogin}
+                  </AuthLink>
+                </MenuNavList>
+              </Menu>
+            </Drawer>
+          </>
+        ) : (
+          <>d</>
+        )}
       </Container>
     </Header>
   );

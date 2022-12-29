@@ -8,6 +8,7 @@ export default {
   "global.copy": "Copy",
   "global.features": "Features",
   "global.featuresDesc": "Beaurl is a free tool that allows you to shorten your link, generate QR code, and design Link-in-Bios.",
+  "global.invalid": "Link is invalid",
 
   "header.features": "Features",
   "header.pricing": "Pricing",
@@ -42,6 +43,12 @@ export default {
 
   "faq.title": "Frequency Asked Questions",
   "faq.description": "Beaurl is a free tool that allows you to shorten your link, generate QR code, and design Link-in-Bios.",
+
+  "login.title": "Login to Beaurl",
+  "login.google": "Login with Google",
+  "login.facebook": "Login with Facebook",
+  "login.policy": "By continuing, you agree to Beaurl's",
+  "login.and": "and",
 
   "footer.features": "Features",
   "footer.aboutUs": "About Us",

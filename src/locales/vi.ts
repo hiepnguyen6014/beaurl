@@ -8,6 +8,7 @@ export default {
   "global.copy": "Sao chép",
   "global.features": "Tính năng nổi bật",
   "global.featuresDesc": "Beaurl là công cụ miễn phí giúp bạn rút gọn link, tạo mã QR và thiết kế Link-in-Bios.",
+  "global.invalid": "Liên kết không hợp lệ",
 
   "header.features": "Tính năng",
   "header.pricing": "Bảng giá",
@@ -44,6 +45,13 @@ export default {
 
   "faq.title": "Các câu hỏi thường gặp",
   "faq.description": "Các câu hỏi thường gặp về Beaurl",
+
+  "login.title": "Đăng nhập vào Beaurl",
+  "login.google": "Đăng nhập bằng Google",
+  "login.facebook": "Đăng nhập bằng Facebook",
+  "login.policy": "Bằng việc đăng nhập, bạn đồng ý với",
+  "login.policy1": "của chúng tôi",
+  "login.and": "và",
 
   "footer.features": "Tính năng",
   "footer.aboutUs": "Về chúng tôi",
