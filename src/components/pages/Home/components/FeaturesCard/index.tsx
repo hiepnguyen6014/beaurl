@@ -9,7 +9,8 @@ const FeaturesCard: React.FC<{
   desc: string;
   icon: StaticImageData;
   features: string[];
-}> = ({ title, desc, icon, features }) => {
+  href: string;
+}> = ({ title, desc, icon, features, href }) => {
   return (
     <Container>
       <Header>
@@ -24,7 +25,7 @@ const FeaturesCard: React.FC<{
           <FeaturesItem key={index}>{translate(feature)}</FeaturesItem>
         ))}
       </FeaturesList>
-      <Button href="/#features" aria-label="Bắt đầu">
+      <Button href={href} aria-label="Bắt đầu">
         {translate("feature.use")}
       </Button>
     </Container>

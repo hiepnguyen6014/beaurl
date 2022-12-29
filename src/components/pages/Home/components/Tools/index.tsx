@@ -6,7 +6,18 @@ import heroSvg from "~/assets/hero.png";
 import { useLocales } from "~/hooks/useLocales";
 
 import { Section, Container, Title } from "../../HomeStyled";
-import { ButtonShortenLink, ButtonCopyLink, Notify, Spinner, ShortenLinkContainer, ShortenLinkInput, HeroImage } from "./ToolsStyled";
+import {
+  ButtonShortenLink,
+  ButtonCopyLink,
+  Notify,
+  Spinner,
+  ShortenLinkContainer,
+  ShortenLinkInput,
+  HeroImage,
+  CopyGroup,
+  NewButton,
+  AdvantageButton,
+} from "./ToolsStyled";
 
 const LINK_REGEX = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)/g;
 
@@ -40,7 +51,7 @@ const Tools: NextPage = () => {
       if (input) {
         input.value = "https://beaurl.store/daihiep";
       }
-    }, 2000);
+    }, 800);
   };
 
   const handleCopyClick = async (): Promise<void> => {
@@ -50,6 +61,15 @@ const Tools: NextPage = () => {
     }
 
     return await Promise.resolve();
+  };
+
+  const handleNew = (): void => {
+    const input = shortenLinkInput.current as HTMLInputElement;
+    if (input) {
+      input.value = "";
+    }
+
+    setCopy(false);
   };
 
   return (
@@ -73,14 +93,20 @@ const Tools: NextPage = () => {
                 onChange={() => setNotify(false)}
               />
               {!copy ? (
-                <ButtonShortenLink onClick={() => handleShortenLink()} aria-label="button-shorten">
-                  {loading && <Spinner />}
-                  {shortenLinkText}
-                </ButtonShortenLink>
+                <CopyGroup>
+                  <ButtonShortenLink onClick={() => handleShortenLink()} aria-label="button-shorten">
+                    {loading && <Spinner />}
+                    {shortenLinkText}
+                  </ButtonShortenLink>
+                </CopyGroup>
               ) : (
-                <ButtonCopyLink onClick={async () => await handleCopyClick()} aria-label="copy-button">
-                  {copyText}
-                </ButtonCopyLink>
+                <CopyGroup>
+                  <ButtonCopyLink onClick={async () => await handleCopyClick()} aria-label="copy-button">
+                    {copyText}
+                  </ButtonCopyLink>
+                  <NewButton onClick={() => handleNew()}>x</NewButton>
+                  <AdvantageButton onClick={() => handleNew()}>QR Code or More</AdvantageButton>
+                </CopyGroup>
               )}
             </ShortenLinkContainer>
             <Notify notify={notify}>{useLocales("global.invalid")}</Notify>

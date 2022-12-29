@@ -24,6 +24,7 @@ const Features: NextPage = () => {
               desc={"features.features1Desc"}
               icon={shortenLinkIcon}
               features={["features.features11", "features.features12", "features.features13", "features.features14"]}
+              href={"/"}
             />
           </Grid>
           <Grid md={4} xs={12} justifyContent={"center"} display={"flex"}>
@@ -32,6 +33,7 @@ const Features: NextPage = () => {
               desc={"features.features2Desc"}
               icon={grCodeIcon}
               features={["features.features21", "features.features22", "features.features23", "features.features24"]}
+              href={"/func/qr-code"}
             />
           </Grid>
           <Grid md={4} xs={12} justifyContent={"center"} display={"flex"}>
@@ -40,6 +42,7 @@ const Features: NextPage = () => {
               desc={"features.features3Desc"}
               icon={biosIcon}
               features={["features.features31", "features.features32", "features.features33", "features.features34"]}
+              href={"/func/link-in-bios"}
             />
           </Grid>
         </Grid>
