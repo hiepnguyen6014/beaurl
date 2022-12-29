@@ -9,7 +9,7 @@ export const LoginContainer = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-image: url("/login-background.jpg");
+  background-image: url("https://daihiep.co/beaurl-login.jpg");
   background-size: contain;
 `;
 

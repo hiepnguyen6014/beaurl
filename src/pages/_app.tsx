@@ -21,16 +21,16 @@ const App: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="keywords" content="shortlink, beaurl, shorten, daihiep" />
+        <meta name="keywords" content="shorten link, beaurl, shorten, daihiep, rut gon link" />
         <meta name="robots" content="index, follow" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="English" />
         <meta name="revisit-after" content="1 days" />
         <meta name="author" content="hiepnguyen6014" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="./logo.png" />
+        <meta property="og:image" content="https://daihiep.co/beaurl-logo.png" />
         <meta property="og:url" content="https://beaurl.store" />
-        <title>Beaurl URL Shortener - Short URLs & Custom Free Link Shortener | Beaurl</title>
+        <title>Beaurl - Short URLs & Custom Free Link Shortener</title>
         <meta name="title" content="Beaurl URL Shortener - Short URLs & Custom Free Link Shortener | Beaurl" />
         <meta
           name="description"
