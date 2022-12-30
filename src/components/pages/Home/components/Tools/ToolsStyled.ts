@@ -144,3 +144,44 @@ export const AdvantageButton = styled.div`
     display: none;
   }
 `;
+
+export const AdvantageContainer = styled.div`
+  width: 550px;
+`;
+
+export const CloseButton = styled.div`
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: rotate(180deg);
+  }
+`;
+
+export const QRCodeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+`;
+
+export const HistoryContainer = styled.div`
+  width: 90%;
+  margin: 0 auto;
+`;
+
+export const HistoryTitle = styled.h2`
+  margin-top: 20px;
+`;

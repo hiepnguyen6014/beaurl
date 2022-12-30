@@ -1,7 +1,22 @@
-import { Unstable_Grid2 as Grid, Drawer } from "@mui/material";
 import React, { useRef, useState, useId } from "react";
 import type { NextPage } from "next";
 import QRCode from "react-qr-code";
+import { Download } from "@mui/icons-material";
+import {
+  Unstable_Grid2 as Grid,
+  Drawer,
+  Button,
+  ButtonGroup,
+  Select,
+  MenuItem,
+  FormControl,
+  Divider,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from "@mui/material";
 
 import heroSvg from "~/assets/hero.png";
 import { useLocales } from "~/hooks/useLocales";
@@ -18,7 +33,13 @@ import {
   CopyGroup,
   NewButton,
   AdvantageButton,
+  AdvantageContainer,
+  CloseButton,
+  QRCodeContainer,
+  HistoryContainer,
+  HistoryTitle,
 } from "./ToolsStyled";
+import saveUrlToLocal from "~/services/save-url-to-local";
 
 const LINK_REGEX = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)/g;
 
@@ -35,28 +56,32 @@ const Tools: NextPage = () => {
 
   const qrCodeId = useId();
 
-  const handleShortenLink = (): void => {
-    const link = shortenLinkInput.current?.value;
+  const handleShortenLink = async (): Promise<void> => {
+    const input = shortenLinkInput.current as HTMLInputElement;
 
-    if (!link?.match(LINK_REGEX)) {
+    if (!input.value?.match(LINK_REGEX)) {
       setNotify(true);
-      return;
+      return await Promise.resolve();
     }
 
     setNotify(false);
     setLoading(true);
+
+    await saveUrlToLocal(input.value, "https://beaurl.store/daihiep");
 
     // fake call api
     setTimeout(() => {
       setLoading(false);
       setCopy(true);
 
-      const input = shortenLinkInput.current as HTMLInputElement;
       if (input) {
         input.value = "https://beaurl.store/daihiep";
       }
+
       input.disabled = true;
     }, 800);
+
+    return await Promise.resolve();
   };
 
   const handleCopyClick = async (): Promise<void> => {
@@ -121,7 +146,7 @@ const Tools: NextPage = () => {
               />
               {!copy ? (
                 <CopyGroup>
-                  <ButtonShortenLink onClick={() => handleShortenLink()} aria-label="button-shorten">
+                  <ButtonShortenLink onClick={async () => await handleShortenLink()} aria-label="button-shorten">
                     {loading && <Spinner />}
                     {shortenLinkText}
                   </ButtonShortenLink>
@@ -138,9 +163,55 @@ const Tools: NextPage = () => {
             </ShortenLinkContainer>
             <Notify notify={notify}>{useLocales("global.invalid")}</Notify>
             <Drawer anchor="right" open={advantage} onClose={() => setAdvantage(false)}>
-              {shortenLinkInput.current && <QRCode id={qrCodeId} value={shortenLinkInput.current.value} />}
-              <button onClick={() => handleDownloadImage()}>Download</button>
-              <button onClick={() => setAdvantage(false)}>Close</button>
+              <AdvantageContainer>
+                <CloseButton onClick={() => setAdvantage(false)}>x</CloseButton>
+                <QRCodeContainer>
+                  {shortenLinkInput.current && <QRCode id={qrCodeId} value={shortenLinkInput.current.value} />}
+
+                  <FormControl size="small" sx={{ marginTop: 1 }}>
+                    <ButtonGroup size="small" aria-label="QR code nút">
+                      <Select size="small" aria-label="Kích thước" value={256}>
+                        <MenuItem value={32}>32</MenuItem>
+                        <MenuItem value={64}>64</MenuItem>
+                        <MenuItem value={128}>128</MenuItem>
+                        <MenuItem value={256}>256</MenuItem>
+                        <MenuItem value={512}>512</MenuItem>
+                      </Select>
+                      <Select sx={{ marginLeft: 1 }} aria-label="Thể loại" value={"svg"}>
+                        <MenuItem value={"png"}>png</MenuItem>
+                        <MenuItem value={"svg"} defaultChecked>
+                          svg
+                        </MenuItem>
+                        <MenuItem value={"jpg"}>jpg</MenuItem>
+                        <MenuItem value={"webp"}>webp</MenuItem>
+                      </Select>
+                      <Button sx={{ marginLeft: 1 }} endIcon={<Download />} onClick={() => handleDownloadImage()}>
+                        {useLocales("global.download")}
+                      </Button>
+                    </ButtonGroup>
+                  </FormControl>
+                </QRCodeContainer>
+                <Divider sx={{ marginTop: 2 }} />
+                <HistoryContainer>
+                  <HistoryTitle>{useLocales("global.history")}</HistoryTitle>
+                  <Table aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Dessert</TableCell>
+                        <TableCell>Calories</TableCell>
+                        <TableCell>Fat&nbsp;(g)</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                        <TableCell>s</TableCell>
+                        <TableCell>s</TableCell>
+                        <TableCell>s</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </HistoryContainer>
+              </AdvantageContainer>
             </Drawer>
           </Grid>
           <Grid
