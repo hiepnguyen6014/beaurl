@@ -4,6 +4,10 @@ const nextConfig = {
   swcMinify: true,
   output: "standalone",
 
+  images: {
+    domains: ["www.w3schools.com"],
+  },
+
   async redirects() {
     return [
       {

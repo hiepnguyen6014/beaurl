@@ -155,3 +155,15 @@ export const AuthLink = styled(Link)`
 export const MenuNavItemLink = styled(NavItemLink)`
   text-align: left;
 `;
+
+export const Avatar = styled(Image)`
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;

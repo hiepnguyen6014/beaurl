@@ -9,6 +9,7 @@ export default {
   "global.features": "Tính năng nổi bật",
   "global.featuresDesc": "Beaurl là công cụ miễn phí giúp bạn rút gọn link, tạo mã QR và thiết kế Link-in-Bios.",
   "global.invalid": "Liên kết không hợp lệ",
+  "global.profile": "Thông tin cá nhân",
 
   "header.features": "Tính năng",
   "header.pricing": "Bảng giá",

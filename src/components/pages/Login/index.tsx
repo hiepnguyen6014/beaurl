@@ -8,6 +8,14 @@ import facebookSvg from "~/assets/facebook-icon.svg";
 import Link from "next/link";
 
 const Login: React.FC = () => {
+  const handleGoogleLogin = (): void => {
+    document.cookie = `token=${"token"}`;
+  };
+
+  const handleFacebookLogin = (): void => {
+    document.cookie = `token=${"token"}`;
+  };
+
   return (
     <LoginContainer>
       <LoginCard>
@@ -15,11 +23,11 @@ const Login: React.FC = () => {
           <Logo src={logoSvg} alt="logo" priority />
         </Link>
         <Title>{useLocales("login.title")}</Title>
-        <LoginButton aria-label="Đăng nhập với Google">
+        <LoginButton aria-label="Đăng nhập với Google" onClick={() => handleGoogleLogin()}>
           <Icon src={googleSvg} alt="google-icon" />
           <LoginText>{useLocales("login.google")}</LoginText>
         </LoginButton>
-        <LoginButton aria-label="Đăng nhập với Facebook">
+        <LoginButton aria-label="Đăng nhập với Facebook" onClick={() => handleFacebookLogin()}>
           <Icon src={facebookSvg} alt="facebook-icon" />
           <LoginText>{useLocales("login.facebook")}</LoginText>
         </LoginButton>

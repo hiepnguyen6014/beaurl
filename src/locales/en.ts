@@ -9,6 +9,7 @@ export default {
   "global.features": "Features",
   "global.featuresDesc": "Beaurl is a free tool that allows you to shorten your link, generate QR code, and design Link-in-Bios.",
   "global.invalid": "Link is invalid",
+  "global.profile": "My account",
 
   "header.features": "Features",
   "header.pricing": "Pricing",

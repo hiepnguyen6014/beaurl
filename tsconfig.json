@@ -19,6 +19,6 @@
       "~/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "cypress.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "cypress.config.js", "src/hooks/useAuth.tss"],
   "exclude": ["node_modules"]
 }

@@ -5,6 +5,7 @@ import type { NextPage } from "next/types";
 
 import { LocalesProvider } from "~/hooks/useLocales";
 import "./index.css";
+import { AuthProvider } from "~/hooks/useAuth";
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -28,7 +29,7 @@ const App: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
         <meta name="revisit-after" content="1 days" />
         <meta name="author" content="hiepnguyen6014" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://daihiep.co/beaurl-logo.png" />
+        <meta property="og:image" content="./images/preview.jpg" />
         <meta property="og:url" content="https://beaurl.store" />
         <title>Beaurl - Short URLs & Custom Free Link Shortener</title>
         <meta name="title" content="Beaurl URL Shortener - Short URLs & Custom Free Link Shortener | Beaurl" />
@@ -43,7 +44,9 @@ const App: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
         />
       </Head>
       <LocalesProvider>
-        <>{getLayout(<Component {...pageProps} />)}</>
+        <AuthProvider>
+          <>{getLayout(<Component {...pageProps} />)}</>
+        </AuthProvider>
       </LocalesProvider>
     </>
   );

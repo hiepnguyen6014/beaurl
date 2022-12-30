@@ -1,5 +1,5 @@
 import React from "react";
-import { Drawer, Divider } from "@mui/material";
+import { Drawer, Divider, Menu as MenuMui, MenuItem } from "@mui/material";
 
 import {
   Container,
@@ -18,6 +18,7 @@ import {
   MenuNavList,
   AuthLink,
   MenuNavItemLink,
+  Avatar,
 } from "./HeaderStyled";
 
 import logo from "~/assets/logo.svg";
@@ -31,9 +32,14 @@ const HeaderContainer: React.FC<{
   const headerPricing = useLocales("header.pricing");
   const headerFaq = useLocales("header.faq");
   const headerLogin = useLocales("global.login");
+  const logoutText = useLocales("global.logout");
+  const profileText = useLocales("global.profile");
 
   const [shadow, setShadow] = React.useState<boolean>(false);
   const [showDrawer, setShowDrawer] = React.useState<boolean>(false);
+  const [login, setLogin] = React.useState<boolean>(false);
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLImageElement | null>(null);
 
   const handleScroll = (): void => {
     if (window.scrollY > 0) {
@@ -61,6 +67,22 @@ const HeaderContainer: React.FC<{
 
   const handleLogin = (): void => {
     window.location.href = "/func/login";
+  };
+
+  const handleClickAvatar = (event: React.MouseEvent<HTMLImageElement>): void => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleViewProfile = (): void => {
+    window.location.href = "/me/profile";
+  };
+
+  const handleLogout = (): void => {
+    setOpen(false);
+    setLogin(false);
+
+    window.location.href = "/";
   };
 
   React.useEffect(() => {
@@ -95,10 +117,21 @@ const HeaderContainer: React.FC<{
                   {headerFaq}
                 </NavItemLink>
               </NavItem>
-              <AuthButton aria-label="login-button" onClick={() => handleLogin()}>
-                {headerLogin}
-              </AuthButton>
+              {!login ? (
+                <AuthButton aria-label="login-button" onClick={() => handleLogin()}>
+                  {headerLogin}
+                </AuthButton>
+              ) : (
+                <Avatar
+                  onClick={(e) => handleClickAvatar(e)}
+                  src="https://www.w3schools.com/howto/img_avatar.png"
+                  alt="avatar"
+                  width={40}
+                  height={40}
+                />
+              )}
             </NavList>
+
             <MenuButton onClick={() => setShowDrawer(true)} aria-label="menu-button">
               <MenuIcon src={menuIcon} alt="menu-icon" />
             </MenuButton>
@@ -124,16 +157,35 @@ const HeaderContainer: React.FC<{
                       {headerFaq}
                     </MenuNavItemLink>
                   </MenuNavItem>
-                  <AuthLink aria-label="login-link" href="/func/login">
-                    {headerLogin}
-                  </AuthLink>
+                  {!login && (
+                    <AuthLink aria-label="login-link" href="/func/login">
+                      {headerLogin}
+                    </AuthLink>
+                  )}
                 </MenuNavList>
               </Menu>
             </Drawer>
           </>
         ) : (
-          <>d</>
+          <Avatar
+            onClick={(e) => handleClickAvatar(e)}
+            src="https://www.w3schools.com/howto/img_avatar.png"
+            alt="avatar"
+            width={40}
+            height={40}
+          />
         )}
+        <MenuMui
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setOpen(false)}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <MenuItem onClick={() => handleViewProfile()}>{profileText}</MenuItem>
+          <Divider />
+          <MenuItem onClick={() => handleLogout()}>{logoutText}</MenuItem>
+        </MenuMui>
       </Container>
     </Header>
   );

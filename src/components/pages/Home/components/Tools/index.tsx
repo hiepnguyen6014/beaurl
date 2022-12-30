@@ -1,6 +1,7 @@
-import { Unstable_Grid2 as Grid } from "@mui/material";
-import React, { useRef, useState } from "react";
+import { Unstable_Grid2 as Grid, Drawer } from "@mui/material";
+import React, { useRef, useState, useId } from "react";
 import type { NextPage } from "next";
+import QRCode from "react-qr-code";
 
 import heroSvg from "~/assets/hero.png";
 import { useLocales } from "~/hooks/useLocales";
@@ -25,11 +26,14 @@ const Tools: NextPage = () => {
   const [copy, setCopy] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [notify, setNotify] = useState<boolean>(false);
+  const [advantage, setAdvantage] = useState<boolean>(false);
 
   const shortenLinkInput = useRef<HTMLInputElement>(null);
 
   const copyText = useLocales("global.copy");
   const shortenLinkText = useLocales("global.shorten");
+
+  const qrCodeId = useId();
 
   const handleShortenLink = (): void => {
     const link = shortenLinkInput.current?.value;
@@ -51,6 +55,7 @@ const Tools: NextPage = () => {
       if (input) {
         input.value = "https://beaurl.store/daihiep";
       }
+      input.disabled = true;
     }, 800);
   };
 
@@ -68,8 +73,30 @@ const Tools: NextPage = () => {
     if (input) {
       input.value = "";
     }
-
+    input.disabled = false;
     setCopy(false);
+  };
+
+  const handleAdvantage = (): void => {
+    setAdvantage(true);
+    console.log("handleAdvantage");
+  };
+
+  const handleDownloadImage = (): void => {
+    const svg = document.getElementById(qrCodeId) as HTMLElement;
+
+    const url = window.URL.createObjectURL(
+      new Blob([svg.outerHTML], {
+        type: "image/svg+xml",
+      })
+    );
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "qr-code.svg");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -105,11 +132,16 @@ const Tools: NextPage = () => {
                     {copyText}
                   </ButtonCopyLink>
                   <NewButton onClick={() => handleNew()}>x</NewButton>
-                  <AdvantageButton onClick={() => handleNew()}>QR Code or More</AdvantageButton>
+                  <AdvantageButton onClick={() => handleAdvantage()}>QR Code ...</AdvantageButton>
                 </CopyGroup>
               )}
             </ShortenLinkContainer>
             <Notify notify={notify}>{useLocales("global.invalid")}</Notify>
+            <Drawer anchor="right" open={advantage} onClose={() => setAdvantage(false)}>
+              {shortenLinkInput.current && <QRCode id={qrCodeId} value={shortenLinkInput.current.value} />}
+              <button onClick={() => handleDownloadImage()}>Download</button>
+              <button onClick={() => setAdvantage(false)}>Close</button>
+            </Drawer>
           </Grid>
           <Grid
             md={6}

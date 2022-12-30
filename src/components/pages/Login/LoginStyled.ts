@@ -9,8 +9,7 @@ export const LoginContainer = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-image: url("https://daihiep.co/beaurl-login.jpg");
-  background-size: contain;
+  background-image: linear-gradient(to right, var(--primary-color), #00a4d4);
 `;
 
 export const LoginCard = styled.div`
