@@ -99,15 +99,13 @@ export const Copy = styled.div`
   animation: FadeDown 1s ease 0.2s both;
 `;
 
-export const CopyGroup = styled.div`
-  position: relative;
-`;
+export const CopyGroup = styled.div``;
 
 export const NewButton = styled.div`
   position: absolute;
   display: block;
   top: 50%;
-  left: -26px;
+  right: 160px;
   width: 16px;
   height: 16px;
   line-height: 16px;
@@ -123,12 +121,12 @@ export const NewButton = styled.div`
 export const AdvantageButton = styled.div`
   position: absolute;
   display: block;
-  top: 104%;
+  top: 106%;
   left: 0;
-  width: 100%;
+  width: 80px;
   height: 26px;
   line-height: 26px;
-  background-color: #252ee4;
+  background-color: #81bf1a;
   color: #fff;
   text-align: center;
   font-size: 12px;
@@ -146,7 +144,7 @@ export const AdvantageButton = styled.div`
 `;
 
 export const AdvantageContainer = styled.div`
-  width: 550px;
+  width: 700px;
 `;
 
 export const CloseButton = styled.div`

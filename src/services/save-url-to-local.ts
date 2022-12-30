@@ -1,4 +1,8 @@
 const saveUrlToLocal = async (url: string, path: string): Promise<void> => {
+  if (typeof localStorage === "undefined") {
+    return;
+  }
+
   const data = {
     url,
     path,
@@ -9,7 +13,7 @@ const saveUrlToLocal = async (url: string, path: string): Promise<void> => {
 
   const parsedData = JSON.parse(localData);
 
-  if (parsedData.length >= 5) {
+  if (parsedData.length >= 3) {
     parsedData.shift();
   }
 

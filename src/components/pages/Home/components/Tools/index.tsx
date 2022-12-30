@@ -1,7 +1,7 @@
 import React, { useRef, useState, useId } from "react";
 import type { NextPage } from "next";
 import QRCode from "react-qr-code";
-import { Download } from "@mui/icons-material";
+import { Download, ContentCopy, ArrowOutward, DeleteForever } from "@mui/icons-material";
 import {
   Unstable_Grid2 as Grid,
   Drawer,
@@ -40,6 +40,8 @@ import {
   HistoryTitle,
 } from "./ToolsStyled";
 import saveUrlToLocal from "~/services/save-url-to-local";
+import getHistory from "~/services/get-history";
+import convertTimestamp from "~/services/convert-timestamp";
 
 const LINK_REGEX = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)/g;
 
@@ -168,8 +170,8 @@ const Tools: NextPage = () => {
                 <QRCodeContainer>
                   {shortenLinkInput.current && <QRCode id={qrCodeId} value={shortenLinkInput.current.value} />}
 
-                  <FormControl size="small" sx={{ marginTop: 1 }}>
-                    <ButtonGroup size="small" aria-label="QR code nút">
+                  <ButtonGroup size="small" aria-label="QR code nút">
+                    <FormControl size="small" sx={{ marginTop: 1 }}>
                       <Select size="small" aria-label="Kích thước" value={256}>
                         <MenuItem value={32}>32</MenuItem>
                         <MenuItem value={64}>64</MenuItem>
@@ -177,19 +179,19 @@ const Tools: NextPage = () => {
                         <MenuItem value={256}>256</MenuItem>
                         <MenuItem value={512}>512</MenuItem>
                       </Select>
+                    </FormControl>
+                    <FormControl size="small" sx={{ marginTop: 1 }}>
                       <Select sx={{ marginLeft: 1 }} aria-label="Thể loại" value={"svg"}>
                         <MenuItem value={"png"}>png</MenuItem>
-                        <MenuItem value={"svg"} defaultChecked>
-                          svg
-                        </MenuItem>
+                        <MenuItem value={"svg"}>svg</MenuItem>
                         <MenuItem value={"jpg"}>jpg</MenuItem>
                         <MenuItem value={"webp"}>webp</MenuItem>
                       </Select>
-                      <Button sx={{ marginLeft: 1 }} endIcon={<Download />} onClick={() => handleDownloadImage()}>
-                        {useLocales("global.download")}
-                      </Button>
-                    </ButtonGroup>
-                  </FormControl>
+                    </FormControl>
+                    <Button sx={{ margin: 1, height: 40 }} endIcon={<Download />} onClick={() => handleDownloadImage()}>
+                      {useLocales("global.download")}
+                    </Button>{" "}
+                  </ButtonGroup>
                 </QRCodeContainer>
                 <Divider sx={{ marginTop: 2 }} />
                 <HistoryContainer>
@@ -197,19 +199,64 @@ const Tools: NextPage = () => {
                   <Table aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Dessert</TableCell>
-                        <TableCell>Calories</TableCell>
-                        <TableCell>Fat&nbsp;(g)</TableCell>
+                        <TableCell>Timestamp</TableCell>
+                        <TableCell
+                          sx={{
+                            textAlign: "center",
+                          }}
+                        >
+                          Beaurl
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            textAlign: "center",
+                          }}
+                        >
+                          Action
+                        </TableCell>
                       </TableRow>
                     </TableHead>
+
                     <TableBody>
-                      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                        <TableCell>s</TableCell>
-                        <TableCell>s</TableCell>
-                        <TableCell>s</TableCell>
-                      </TableRow>
+                      {getHistory()
+                        .slice(0, 3)
+                        .map((row, index) => (
+                          <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                            <TableCell>{convertTimestamp(row.timestamp)}</TableCell>
+                            <TableCell>{row.path}</TableCell>
+                            <TableCell>
+                              <Button
+                                sx={{ lineHeight: `17px  !important` }}
+                                size="small"
+                                color="success"
+                                variant="contained"
+                                startIcon={<ContentCopy />}
+                              >
+                                Copy
+                              </Button>
+                              <Button
+                                sx={{ marginLeft: 1, lineHeight: `17px  !important` }}
+                                size="small"
+                                color="primary"
+                                variant="contained"
+                                startIcon={<ArrowOutward />}
+                              >
+                                Visit
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
+                  <Button
+                    sx={{ marginTop: 1, lineHeight: `17px  !important` }}
+                    size="small"
+                    color="warning"
+                    variant="outlined"
+                    startIcon={<DeleteForever />}
+                  >
+                    Delete
+                  </Button>
                 </HistoryContainer>
               </AdvantageContainer>
             </Drawer>
