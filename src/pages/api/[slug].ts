@@ -1,7 +1,7 @@
 import getOriginalLink from "~/apis/get-original-link";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const BASE_URL = process.env.BASE_URL ?? "http://localhost:3000";
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "";
 
 const handler: (req: NextApiRequest, res: NextApiResponse) => void = async (req, res) => {
   const { slug } = req.query;
@@ -10,7 +10,7 @@ const handler: (req: NextApiRequest, res: NextApiResponse) => void = async (req,
 
   // check originUrl is ""
   if (originUrl === "") {
-    res.setHeader("Location", BASE_URL);
+    res.setHeader("Location", NEXT_PUBLIC_BASE_URL);
   } else {
     res.setHeader("Location", originUrl);
   }
