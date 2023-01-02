@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL_API,
 });
 
 axiosInstance.interceptors.request.use(
-  (config) => {
-    // Do something before request is sent
+  (config: AxiosRequestConfig) => {
+    config.withCredentials = true;
     return config;
   },
   async (error) => {
@@ -17,11 +17,12 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    // Do something with response data
-    return response;
+    return response.data;
   },
   async (error) => {
     // Do something with response error
     return await Promise.reject(error);
   }
 );
+
+export default axiosInstance;

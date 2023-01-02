@@ -42,8 +42,10 @@ import {
 import saveUrlToLocal from "~/services/save-url-to-local";
 import getHistory from "~/services/get-history";
 import convertTimestamp from "~/services/convert-timestamp";
+import shortenLink from "~/apis/shorten-link";
 
 const LINK_REGEX = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)/g;
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "";
 
 const Tools: NextPage = () => {
   const [copy, setCopy] = useState<boolean>(false);
@@ -69,19 +71,22 @@ const Tools: NextPage = () => {
     setNotify(false);
     setLoading(true);
 
-    await saveUrlToLocal(input.value, "https://beaurl.store/daihiep");
+    const result = await shortenLink(input.value);
 
-    // fake call api
-    setTimeout(() => {
+    const target = `${NEXT_PUBLIC_BASE_URL}/api/${result}`;
+
+    if (target) {
+      await saveUrlToLocal(input.value, target);
+
       setLoading(false);
       setCopy(true);
 
       if (input) {
-        input.value = "https://beaurl.store/daihiep";
+        input.value = target;
       }
 
       input.disabled = true;
-    }, 800);
+    }
 
     return await Promise.resolve();
   };
