@@ -9,11 +9,14 @@ const nextConfig = {
   },
 
   redirects: async () => {
+    // Redirect all requests to /api/* except /robots.txt
     return [
       {
         source: "/:path",
         destination: "/api/:path",
-        permanent: true,
+        permanent: false,
+        basePath: false,
+        locale: false,
       },
     ];
   },

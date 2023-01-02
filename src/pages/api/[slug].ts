@@ -6,6 +6,12 @@ const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "";
 const handler: (req: NextApiRequest, res: NextApiResponse) => void = async (req, res) => {
   const { slug } = req.query;
 
+  if (slug === "robots.txt") {
+    res.setHeader("Content-Type", "text/plain");
+    res.send(`User-agent: *\nDisallow: /_next/*\nDisallow: /api/*\nDisallow: /me/*\nDisallow: /js`);
+    return;
+  }
+
   const originUrl = await getOriginalLink(slug as string);
 
   // check originUrl is ""
