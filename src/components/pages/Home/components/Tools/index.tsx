@@ -73,7 +73,7 @@ const Tools: NextPage = () => {
 
     const result = await shortenLink(input.value);
 
-    const target = `${NEXT_PUBLIC_BASE_URL}/api/${result}`;
+    const target = `${NEXT_PUBLIC_BASE_URL}/${result}`;
 
     if (target) {
       await saveUrlToLocal(input.value, target);

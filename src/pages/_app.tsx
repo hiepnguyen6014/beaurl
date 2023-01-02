@@ -42,6 +42,7 @@ const App: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
           property="og:description"
           content="Beaurl's Connections Platform is more than a free URL shortener, with robust link management software, advanced QR Code features, and a Link-in-bio solution."
         />
+        <link rel="icon" href="./images/favicon.ico" />
       </Head>
       <LocalesProvider>
         <AuthProvider>
