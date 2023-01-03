@@ -12,6 +12,8 @@ const convertTimestamp = (timestamp: number): string => {
   const minute = date.getMinutes();
   if (minute < 10) {
     result += `0${minute} `;
+  } else {
+    result += `${minute} `;
   }
   const day = date.getDate();
   if (day < 10) {

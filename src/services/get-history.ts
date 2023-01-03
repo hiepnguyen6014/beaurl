@@ -1,8 +1,4 @@
-interface ShortenLink {
-  path: string;
-  timestamp: number;
-  url: string;
-}
+import type { ShortenLink } from "~/interfaces";
 
 const getHistory = (): ShortenLink[] => {
   if (typeof localStorage === "undefined") {

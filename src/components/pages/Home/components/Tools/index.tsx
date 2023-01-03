@@ -16,6 +16,8 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 
 import heroSvg from "~/assets/hero.png";
@@ -43,6 +45,8 @@ import saveUrlToLocal from "~/services/save-url-to-local";
 import getHistory from "~/services/get-history";
 import convertTimestamp from "~/services/convert-timestamp";
 import shortenLink from "~/apis/shorten-link";
+import deleteHistory from "~/services/delete-history";
+import type { ShortenLink } from "~/interfaces";
 
 const LINK_REGEX = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)/g;
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "";
@@ -52,10 +56,15 @@ const Tools: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [notify, setNotify] = useState<boolean>(false);
   const [advantage, setAdvantage] = useState<boolean>(false);
+  const [copyNotify, setCopyNotify] = useState<boolean>(false);
+  const [history, setHistory] = useState<ShortenLink[]>(() => {
+    return getHistory().slice(0, 3);
+  });
 
   const shortenLinkInput = useRef<HTMLInputElement>(null);
 
   const copyText = useLocales("global.copy");
+  const visitText = useLocales("tools.visit");
   const shortenLinkText = useLocales("global.shorten");
 
   const qrCodeId = useId();
@@ -88,6 +97,9 @@ const Tools: NextPage = () => {
       input.disabled = true;
     }
 
+    const history = getHistory().slice(0, 3);
+    setHistory(history);
+
     return await Promise.resolve();
   };
 
@@ -96,7 +108,7 @@ const Tools: NextPage = () => {
     if (input) {
       await navigator.clipboard.writeText(input.value);
     }
-
+    setCopyNotify(true);
     return await Promise.resolve();
   };
 
@@ -129,6 +141,23 @@ const Tools: NextPage = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleCopyLink = async (url: string): Promise<void> => {
+    // copy url to clipboard
+    await navigator.clipboard.writeText(url);
+
+    // show notify
+    setCopyNotify(true);
+  };
+
+  const handleVisitLink = (url: string): void => {
+    window.open(url, "_blank");
+  };
+
+  const handleDelete = (): void => {
+    deleteHistory();
+    setHistory([]);
   };
 
   return (
@@ -195,7 +224,7 @@ const Tools: NextPage = () => {
                     </FormControl>
                     <Button sx={{ margin: 1, height: 40 }} endIcon={<Download />} onClick={() => handleDownloadImage()}>
                       {useLocales("global.download")}
-                    </Button>{" "}
+                    </Button>
                   </ButtonGroup>
                 </QRCodeContainer>
                 <Divider sx={{ marginTop: 2 }} />
@@ -204,53 +233,53 @@ const Tools: NextPage = () => {
                   <Table aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Timestamp</TableCell>
+                        <TableCell>{useLocales("tools.time")}</TableCell>
                         <TableCell
                           sx={{
                             textAlign: "center",
                           }}
                         >
-                          Beaurl
+                          {useLocales("tools.link")}
                         </TableCell>
                         <TableCell
                           sx={{
                             textAlign: "center",
                           }}
                         >
-                          Action
+                          {useLocales("tools.action")}
                         </TableCell>
                       </TableRow>
                     </TableHead>
 
                     <TableBody>
-                      {getHistory()
-                        .slice(0, 3)
-                        .map((row, index) => (
-                          <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                            <TableCell>{convertTimestamp(row.timestamp)}</TableCell>
-                            <TableCell>{row.path}</TableCell>
-                            <TableCell>
-                              <Button
-                                sx={{ lineHeight: `17px  !important` }}
-                                size="small"
-                                color="success"
-                                variant="contained"
-                                startIcon={<ContentCopy />}
-                              >
-                                Copy
-                              </Button>
-                              <Button
-                                sx={{ marginLeft: 1, lineHeight: `17px  !important` }}
-                                size="small"
-                                color="primary"
-                                variant="contained"
-                                startIcon={<ArrowOutward />}
-                              >
-                                Visit
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
+                      {history.map((row, index) => (
+                        <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                          <TableCell>{convertTimestamp(row.timestamp)}</TableCell>
+                          <TableCell>{row.path}</TableCell>
+                          <TableCell>
+                            <Button
+                              sx={{ lineHeight: `17px  !important` }}
+                              size="small"
+                              color="success"
+                              variant="contained"
+                              startIcon={<ContentCopy />}
+                              onClick={async () => await handleCopyLink(row.path)}
+                            >
+                              {copyText}
+                            </Button>
+                            <Button
+                              sx={{ marginLeft: 1, lineHeight: `17px  !important` }}
+                              size="small"
+                              color="primary"
+                              variant="contained"
+                              startIcon={<ArrowOutward />}
+                              onClick={() => handleVisitLink(row.path)}
+                            >
+                              {visitText}
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                   <Button
@@ -259,12 +288,26 @@ const Tools: NextPage = () => {
                     color="warning"
                     variant="outlined"
                     startIcon={<DeleteForever />}
+                    onClick={() => handleDelete()}
                   >
-                    Delete
+                    {useLocales("tools.delete")}
                   </Button>
                 </HistoryContainer>
               </AdvantageContainer>
             </Drawer>
+            <Snackbar
+              open={copyNotify}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              autoHideDuration={3000}
+              onClose={() => setCopyNotify(false)}
+            >
+              <Alert onClose={() => setCopyNotify(false)} severity="success" variant="filled">
+                {useLocales("global.copySuccess")}
+              </Alert>
+            </Snackbar>
           </Grid>
           <Grid
             md={6}
